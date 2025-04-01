@@ -16,14 +16,15 @@
   import { normalizeString } from '@/utils/normalizeUtils'
   
   // Définition des props et de l'emit pour communiquer avec la vue parente
-  const props = defineProps<{ pokemons: Object[] }>()
+  const props = defineProps<{ pokemons: any[] }>()
   const emit = defineEmits(['update:filteredPokemons'])
   
   const searchTerm = ref('')
   
   const filtersearch = computed(() => {
 
-    const searchTokens = normalizeString(searchTerm.value)
+    const normalizedSearch = normalizeString(searchTerm.value)
+    const searchTokens = normalizedSearch // découpe en tokens
   
     // if (normalizedSearch === '') {
     //   emit('update:filteredPokemons', props.pokemons)
@@ -32,7 +33,7 @@
   
     const filtered = props.pokemons.filter(pokemon => {
       return searchTokens.every(token =>
-        pokemon.nameToken.some(name => name.startsWith(token))
+        pokemon.nameToken.some((name: string) => name.startsWith(token))
       );
     });
   

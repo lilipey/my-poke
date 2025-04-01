@@ -29,7 +29,10 @@
     sprites: {
       regular: string
     }
-    types: string[]
+    types: {
+      name: string,
+      image: string
+    }[]
   }
   
   const props = defineProps<{ pokemon: Pokemon }>()

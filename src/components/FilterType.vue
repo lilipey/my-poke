@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import {normalizeString, normalizeStringsArray} from '@/utils/normalizeUtils'
 
 // Définition des props et de l'emit pour communiquer avec la vue parente
 const props = defineProps<{ pokemons: any[] }>()

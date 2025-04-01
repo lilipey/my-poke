@@ -57,7 +57,7 @@ defineProps({
 });
 
 const store = usePokedexStore()
-const getStatIcon = (stat: string) => {
+const getStatIcon = (stat: number) => {
   const icons: Record<string, string> = {
     hp: 'fas fa-heart',
     atk: 'fas fa-bolt',

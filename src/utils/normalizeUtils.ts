@@ -1,10 +1,5 @@
-interface Pokemon {
-  name: {
-    fr: string;
-  };
-  nameToken?: string[];
-}
 
+import type { PokemonType } from "@/views/PokemonList.vue";
 function normalizeString(str: string): string[] {
     return str
       .normalize("NFD")
@@ -23,7 +18,7 @@ function normalizeStringsArray(strings: string[]): string[] {
   );
 }
   // Lors du chargement des utilisateurs, on pré-calcule les tokens du nom complet
-  function preprocessUsers(data: Pokemon[]): Pokemon[] {
+  function preprocessUsers(data: PokemonType[]):  PokemonType[] {
     return data.map(pokemon => {
       const nameToken = normalizeString(pokemon.name.fr);
       // stocke les tokens dans une nouvelle propriété pour éviter de refaire le découpage à chaque filtrage
