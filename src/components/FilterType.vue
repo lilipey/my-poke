@@ -38,7 +38,7 @@ const filterTypes = computed(() => {
 
       return
     }
-    return selectedTypes.value.every(type => pokemon.types.some(pokemonType => pokemonType.name.includes(type)))
+    return selectedTypes.value.every(type => pokemon.types.some((pokemonType: { name: string | string[]; }) => pokemonType.name.includes(type)))
   })
 
   emit('update:filteredPokemons', filtered)

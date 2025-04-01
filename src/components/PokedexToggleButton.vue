@@ -23,9 +23,13 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import {usePokedexStore} from "@/stores/usePokemonStores.ts";
+import type { PokemonType } from "@/views/PokemonList.vue"; // Adjust the path as needed
 
 const props = defineProps({
-  pokemon: Object || null,
+  pokemon: {
+    type: Object as () => PokemonType,
+    required: true,
+  },
 });
 
 const store = usePokedexStore()

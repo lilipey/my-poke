@@ -21,21 +21,10 @@
   import { defineProps } from 'vue'
   import PokemonDetail from "@/components/PokemonDetail.vue";
   import PokedexToggleButton from "@/components/PokedexToggleButton.vue";
+import type { PokemonType } from '@/views/PokemonList.vue';
   
-  interface Pokemon {
-    name: {
-      fr: string
-    }
-    sprites: {
-      regular: string
-    }
-    types: {
-      name: string,
-      image: string
-    }[]
-  }
   
-  const props = defineProps<{ pokemon: Pokemon }>()
+  const props = defineProps<{ pokemon: PokemonType }>()
   </script>
   
   <style scoped>
