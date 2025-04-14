@@ -14,33 +14,40 @@
         </div>
       </div>
     </div>
-    <p><strong><i class="fas fa-align-left"></i> Description :</strong> {{ pokemon.description }}</p>
-    <p><strong><i class="fas fa-ruler-vertical"></i> Taille :</strong> {{ pokemon.height }} m</p>
-    <p><strong><i class="fas fa-weight-hanging"></i> Poids :</strong> {{ pokemon.weight }} kg</p>
-    <div class="pokemon-stats">
-      <strong><i class="fas fa-chart-bar"></i> Statistiques de Base :</strong>
-      <ul>
-        <li v-for="(value, stat) in pokemon.stats" :key="stat">
-          <i :class="getStatIcon(stat)"></i> {{ stat }} : {{ value }}
-        </li>
-      </ul>
+    <div>
+      
     </div>
-    <div class="pokemon-abilities">
-      <strong><i class="fas fa-star"></i> Talents :</strong>
-      <ul>
-        <li v-for="ability in pokemon.abilities" :key="ability.name">
-          {{ ability.name }} : {{ ability.description }}
-        </li>
-      </ul>
-    </div>
-    <div class="pokemon-evolution" v-if="pokemon.evolutions && pokemon.evolutions.length">
-      <strong><i class="fas fa-long-arrow-alt-up"></i> Évolutions :</strong>
-      <ul>
-        <li v-for="evolution in pokemon.evolutions" :key="evolution.pokedex_id">
-          {{ evolution.name }} (Niveau {{ evolution.min_level }})
-        </li>
-      </ul>
-    </div>
+    <!-- <p class="align-left"><strong><i class="fas fa-align-left"></i> Description :</strong> {{ pokemon.description }}</p> -->
+    <p><strong><i class="fas fa-ruler-vertical"></i> Taille :</strong> {{ pokemon.height }}</p>
+    <p><strong><i class="fas fa-weight-hanging"></i> Poids :</strong> {{ pokemon.weight }}</p>
+  <div class="pokemon-stats">
+  <strong><i class="fas fa-chart-bar"></i> Statistiques de Base :</strong>
+  <ul>
+    <li v-for="(value, stat) in pokemon.stats" :key="stat">
+      <i :class="getStatIcon(stat)"></i> {{ statMapping[stat] || stat }} : {{ value }}
+    </li>
+   
+  </ul>
+</div>
+<div class="pokemon-abilities">
+  <strong><i class="fas fa-star"></i> Talents :</strong>
+  <ul>
+    <li v-for="talent in pokemon.talents" :key="talent.name">
+      {{ talent.name }}
+      <i v-if="talent.tc" class="fas fa-eye-slash" title="Talent caché"></i>
+    </li>
+  </ul>
+</div>
+    <div class="pokemon-evolution" v-if="pokemon.evolution && pokemon.evolution.next && pokemon.evolution.next.length">
+  <strong><i class="fas fa-long-arrow-alt-up"></i> Évolutions :</strong>
+  <ul>
+    <li v-for="evolution in pokemon.evolution.next" :key="evolution.pokedex_id">
+      <RouterLink :to="`/pokemon/${evolution.pokedex_id}`">
+        {{ evolution.name }} ({{ evolution.condition || 'Condition inconnue' }})
+      </RouterLink>
+    </li>
+  </ul>
+</div>
   </div>
 </template>
 
@@ -55,7 +62,14 @@ defineProps({
     required: true,
   },
 });
-
+const statMapping: Record<string, string> = {
+  hp: 'Points de Vie',
+  atk: 'Attaque',
+  def: 'Défense',
+  spe_atk: 'Attaque Spéciale',
+  spe_def: 'Défense Spéciale',
+  vit: 'Vitesse',
+};
 const store = usePokedexStore()
 const getStatIcon = (stat: number) => {
   const icons: Record<string, string> = {
@@ -109,7 +123,9 @@ const handleBlur = (event: FocusEvent) => {
   transition: transform 0.3s ease;
   font-family: 'Arial', sans-serif;
 }
-
+.fa-eye-slash {
+  margin:20px;
+}
 .close-btn {
   position: absolute;
   top: 10px;

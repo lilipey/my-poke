@@ -1,4 +1,5 @@
 <template>
+  <RouterLink to="/">Retour à la liste</RouterLink>
   <div>
     <h1 class="h1">Mon Pokédex</h1>
     <div v-if="store.pokedex.length === 0">
@@ -7,7 +8,6 @@
     <ul class="pokemon-list">
       <li v-for="pokemon in store.pokedex" :key="pokemon.pokedex_id">
         <PokemonCard :pokemon="pokemon" />
-        <PokedexToggleButton :pokemon="pokemon" />
       </li>
     </ul>
   </div>

@@ -6,7 +6,7 @@
         <h1>Pokédex</h1>
         <Search v-if="pokemons" :pokemons="pokemons" @update:filteredPokemons="updateFilteredPokemons" />
         <FilterType v-if="pokemons" :pokemons="pokemons" @update:filteredPokemons="updateFilteredPokemons" />
-        <RouterLink to="/mon-pokedex">mon poke</RouterLink>
+        <RouterLink to="/mon-pokedex">Mon poke</RouterLink>
         <div v-if="loading">Chargement…</div>
         <div v-else-if="error">Erreur : {{ error.message }}</div>
         <div class="list-container">
@@ -158,7 +158,9 @@ onMounted(async () => {
   padding: 1rem;
   background: #fff;
 }
-
+.list-container {
+  margin-top: 10px;
+}
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
@@ -174,7 +176,7 @@ h1 {
 a{
   text-decoration: none;
   padding:10px;
-  background-color: powderblue;
+  background-color: rgb(209, 209, 209);
   margin : 10px;
 }
 </style>
