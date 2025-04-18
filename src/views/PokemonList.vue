@@ -6,7 +6,8 @@
         <h1>Pokédex</h1>
         <Search v-if="pokemons" :pokemons="pokemons" @update:filteredPokemons="updateFilteredPokemons" />
         <FilterType v-if="pokemons" :pokemons="pokemons" @update:filteredPokemons="updateFilteredPokemons" />
-        <RouterLink to="/mon-pokedex">Mon poke</RouterLink>
+        <RouterLinkStyle to="/mon-pokedex" title="Mon poke"></RouterLinkStyle>
+
         <div v-if="loading">Chargement…</div>
         <div v-else-if="error">Erreur : {{ error.message }}</div>
         <div class="list-container">
@@ -35,6 +36,7 @@ import PokemonCard from '@/components/PokemonCard.vue';
 import Search from '@/components/Searching.vue';
 import { preprocessUsers } from '@/utils/normalizeUtils';
 import FilterType from '@/components/FilterType.vue';
+import RouterLinkStyle from '@/components/RouterLinkStyle.vue';
 import { useRouter, useRoute } from 'vue-router';
 
 import PokemonDetail from "@/components/PokemonDetail.vue";
@@ -104,12 +106,6 @@ const router = useRouter();
 const route = useRoute();
 
 
-
-import { usePokedexStore } from '../stores/usePokemonStores.ts';
-
-const store = usePokedexStore();
-
-
 const selectedPokemonData = computed(() => {
   return pokemons.value.find(pokemon => pokemon.pokedex_id === Number(route.params.id)) || null;
 });
@@ -175,8 +171,14 @@ h1 {
 }
 a{
   text-decoration: none;
+  border-radius: 4px;
   padding:10px;
-  background-color: rgb(209, 209, 209);
-  margin : 10px;
+  color:#fff;
+  background-color: #3b82c4;
+ 
+}
+.a-container{
+  margin-bottom: 16px;
+  height: auto;
 }
 </style>

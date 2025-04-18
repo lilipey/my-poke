@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, watchEffect, onMounted,ref} from 'vue';
+import {defineProps, onMounted,ref} from 'vue';
 import {usePokedexStore} from "@/stores/usePokemonStores.ts";
 import {useRouter} from "vue-router";
 

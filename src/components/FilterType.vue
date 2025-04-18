@@ -8,6 +8,7 @@
             :id="type"
             :value="type"
             v-model="selectedTypes"
+            :disabled="isMaxSelected && !selectedTypes.includes(type)"
             class="filter-checkbox"
         />
         {{ type }}
@@ -24,6 +25,7 @@ const props = defineProps<{ pokemons: any[] }>()
 const emit = defineEmits(['update:filteredPokemons'])
 //en francais
 const types = ref<string[]>(['Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Électrik', 'Poison', 'Fée', 'Vol', 'Combat', 'Psy', 'Sol', 'Roche', 'Spectre', 'Dragon', 'Acier', 'Ténèbres', 'Glace'])
+const isMaxSelected = computed(() => selectedTypes.value.length >= 2)
 
 
 const selectedTypes = ref<string[]>([])

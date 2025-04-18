@@ -6,10 +6,10 @@
               @click.stop
           />
             <h2>{{ pokemon.name.fr }}</h2>
-            <img :src="pokemon.sprites.regular" :alt="pokemon.name.fr" />
+            <img :src="pokemon.sprites.regular" alt="" />
             <div class="pokemon-types">
                     <div v-for="type in pokemon.types" :key="type.name" class="pokemon-type">
-                        <img :src="type.image" :alt="type.name" class="type-image" />
+                        <img :src="type.image" alt="" class="type-image" />
                         <p>{{ type.name }}</p>
                     </div>
             </div>

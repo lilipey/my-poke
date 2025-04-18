@@ -1,5 +1,5 @@
 <template>
-  <RouterLink to="/">Retour à la liste</RouterLink>
+  <RouterLinkStyle to="/" title="Retour à la liste"></RouterLinkStyle>
   <div>
     <h1 class="h1">Mon Pokédex</h1>
     <div v-if="store.pokedex.length === 0">
@@ -17,6 +17,7 @@
 import PokemonCard from '@/components/PokemonCard.vue';
 import { usePokedexStore } from '@/stores/usePokemonStores.ts';
 import PokedexToggleButton from "@/components/PokedexToggleButton.vue";
+import RouterLinkStyle from '@/components/RouterLinkStyle.vue';
 
 const store = usePokedexStore();
 
